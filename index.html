@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Ink Interface - Passive Reflection Only</title>
+    <link rel="stylesheet" href="eink-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ambient-light-indicator">
+        <i class="fas fa-sun"></i> Ambient Light: <span class="light-value" id="ambientLuxValue">500 lx</span>
+    </div>
+    
+    <div class="eink-display">
+        <header class="header">
+            <h1>The Architecture of Silence</h1>
+            <div class="header-subtitle">DESIGN WEEKLY</div>
+        </header>
+        
+        <div class="display-status">
+            <div class="display-status-item">
+                <div class="status-icon active"></div>
+                <span>E-Ink Mode Active</span>
+            </div>
+            <div class="display-status-item">
+                <div class="status-icon"></div>
+                <span>Backlight: <span id="backlightStatus">DISABLED</span></span>
+            </div>
+            <div class="display-status-item">
+                <div class="status-icon"></div>
+                <span>Refresh Rate: <span id="refreshRateValue">15</span> fps</span>
+            </div>
+            <div class="display-status-item">
+                <div class="status-icon active"></div>
+                <span>Passive Reflection Only</span>
+            </div>
+        </div>
+        
+        <div class="content-container">
+            <div class="section">
+                <h2 class="section-title">PAPER ENGINE</h2>
+                <div class="section-subtitle">SUBSTRATE TYPE: Creme Book</div>
+                
+                <ul class="paper-engine-specs">
+                    <li class="spec-item">
+                        <span class="spec-label">TEXTURE</span>
+                        <span class="spec-value">Paper-like Matte</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">FIBER DENSITY</span>
+                        <span class="spec-value" id="fiberDensityValue">Medium</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">REFLECTANCE</span>
+                        <span class="spec-value" id="reflectanceValue">42%</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">INK BLEED</span>
+                        <span class="spec-value" id="inkBleedValue">Minimal</span>
+                    </li>
+                </ul>
+                
+                <div class="control-group">
+                    <label class="control-label">FIBER DENSITY</label>
+                    <div class="slider-container">
+                        <input type="range" id="fiberDensitySlider" min="1" max="100" value="50">
+                        <span class="slider-value" id="fiberDensitySliderValue">50</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">INK BLEED SIMULATION</label>
+                    <div class="slider-container">
+                        <input type="range" id="inkBleedSlider" min="1" max="100" value="10">
+                        <span class="slider-value" id="inkBleedSliderValue">10</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">REFLECTIVE ENGINE</h2>
+                <div class="section-subtitle">AMBIENT LIGHT (LUX)</div>
+                
+                <div class="control-group">
+                    <label class="control-label">AMBIENT LIGHT SIMULATION</label>
+                    <div class="slider-container">
+                        <input type="range" id="ambientLightSlider" min="0" max="1000" value="500">
+                        <span class="slider-value" id="ambientLightSliderValue">500 lx</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">CONTRAST MODE</label>
+                    <div class="display-mode-selector">
+                        <div class="mode-btn" data-mode="maximum">MAXIMUM</div>
+                        <div class="mode-btn active" data-mode="standard">STANDARD</div>
+                        <div class="mode-btn" data-mode="subdued">SUBDUED</div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">REFRESH STRATEGY</label>
+                    <div class="display-mode-selector">
+                        <div class="mode-btn active" data-strategy="quality">QUALITY</div>
+                        <div class="mode-btn" data-strategy="speed">SPEED</div>
+                        <div class="mode-btn" data-strategy="balanced">BALANCED</div>
+                    </div>
+                </div>
+                
+                <div class="section-subtitle" style="margin-top: 25px;">Understanding E-Ink Technology</div>
+                <p style="color: var(--eink-gray); line-height: 1.7; margin-top: 10px;">
+                    E-Ink displays use reflected light rather than emitting light, mimicking the appearance of ink on paper. 
+                    This technology provides a reading experience similar to physical paper, with wide viewing angles and 
+                    visibility in direct sunlight.
+                </p>
+            </div>
+        </div>
+        
+        <div class="refresh-info">
+            <div class="refresh-item">
+                <div class="refresh-time" id="fullRefreshTime">15</div>
+                <div class="refresh-label">Full Refresh</div>
+            </div>
+            <div class="refresh-item">
+                <div class="refresh-time" id="partialRefreshTime">8</div>
+                <div class="refresh-label">Partial Refresh</div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>PASSIVE REFLECTION ONLY - NO LIGHT EMISSION | SUPPORTS E-INK DISPLAYS ONLY (NOT LCD, NOT OLED)</p>
+            <p style="margin-top: 10px;">
+                <span class="footer-highlight">ZERO BACKLIGHT USAGE</span> | 
+                <span class="footer-highlight">NO BLUE LIGHT EMISSION</span> | 
+                <span class="footer-highlight">MIMICS PHYSICAL PAPER</span>
+            </p>
+        </footer>
+    </div>
+    
+    <script src="eink-engine.js"></script>
+</body>
+</html>
